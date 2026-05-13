@@ -19,7 +19,6 @@ services:
 
   api2:
     <<: *api
-    build: !reset null
     environment:
       - SOCK=/run/sock/api2.sock
 
