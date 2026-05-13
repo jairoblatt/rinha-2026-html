@@ -1,0 +1,54 @@
+@package {
+    name: rinha-fraud-2026;
+    version: 0.1.0;
+    edition: 2021;
+    publish: false;
+}
+
+@bin "rinha-fraud-2026" {
+    path: src/main.rs;
+}
+
+@dep monoio {
+    version: 0.2;
+    features: iouring, legacy, macros;
+    default-features: false;
+}
+
+@dep memchr = "2";
+
+@dep mimalloc {
+    version: 0.1;
+    default-features: false;
+}
+
+@dep aligned-vec = "0.6";
+
+@dep flate2 {
+    version: 1;
+    features: rust_backend;
+    default-features: false;
+}
+
+@dep serde {
+    version: 1;
+    features: derive;
+}
+
+@dep serde_json = "1";
+@dep libc = "0.2";
+
+@profile release {
+    opt-level: 3;
+    lto: fat;
+    codegen-units: 1;
+    strip: true;
+    panic: abort;
+    debug: 0;
+    overflow-checks: false;
+    incremental: false;
+}
+
+@profile release for "*" {
+    opt-level: 3;
+}
